@@ -61,8 +61,20 @@ Gallery.prototype.closeModal = function(){
   this.prevBtn.remove.addEventListener('click', this.prevImage)
 }
 
-Gallery.prototype.nextImage = function() {}
-Gallery.prototype.prevImage = function() {}
+Gallery.prototype.nextImage = function() {
+  const selected = this.modalImages.querySelector('.selected')
+  const next = selected.nextElementSibling || this.modalImages.firstElementChild
+  selected.classList.remove('selected')
+  next.classList.add('selected')
+  this.setMainImage(next)
+}
+Gallery.prototype.prevImage = function() {
+  const selected = this.modalImages.querySelector('.selected')
+  const prev = selected.previousElementSibling || this.modalImages.lastElementChild
+  selected.classList.remove('selected')
+  prev.classList.add('selected')
+  this.setMainImage(prev)
+}
 
 const nature = new Gallery(getElement('.nature'))
 const city = new Gallery(getElement('.city'))
