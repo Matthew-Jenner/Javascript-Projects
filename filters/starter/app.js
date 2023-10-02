@@ -3,11 +3,11 @@ let filteredProducts = [...products];
 const productsContainer = document.querySelector(".products-container");
 
 const displayProducts = () => {
-	if(filteredProducts.length < 1) {
-        productsContainer.innerHTML = `<h6> Sorry, me no likey </h6>`
-        return  
-        // without the return nothing happens
-    }
+	if (filteredProducts.length < 1) {
+		productsContainer.innerHTML = `<h6> Sorry, me no likey </h6>`;
+		return;
+		// without the return nothing happens
+	}
 
 	productsContainer.innerHTML = filteredProducts
 		.map(({ id, title, image, price }) => {
@@ -36,5 +36,22 @@ form.addEventListener("keyup", () => {
 	filteredProducts = products.filter((product) => {
 		return product.title.toLowerCase().includes(inputValue);
 	});
-    displayProducts()
+	displayProducts();
 });
+
+// filter buttons
+
+companiesDOM = document.querySelector(".companies");
+
+const displayButtons = () => {
+	const buttons = [
+		"all",
+		...new Set(products.map((product) => product.company)),
+	];
+	companiesDOM.innerHTML = buttons
+		.map((company) => {
+			return `	<button class="company-btn" data-id=${company}>${company}</button>`;
+		})
+		.join("");
+};
+displayButtons()
