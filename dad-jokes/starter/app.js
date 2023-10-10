@@ -4,17 +4,25 @@ const btn = document.querySelector(".btn");
 const result = document.querySelector(".result");
 
 btn.addEventListener("click", () => {
-	fetchDadJoke()
+	fetchDadJoke();
 });
 
 const fetchDadJoke = async () => {
-	const response = await fetch(url, {
-		headers: {
-			Accept: "application/json",
-			"User-Agent": "learning app",
-		},
-	});
-	const data = await response.json();
-	result.textContent = data.joke;
+	result.textContent = "Loading punk...";
+	try {
+		const response = await fetch(url, {
+			headers: {
+				Accept: "application/json",
+				"User-Agent": "learning app",
+			},
+		});
+        if(!response.ok)
+        throw new Error('there was an error')
+		const data = await response.json();
+		result.textContent = data.joke;
+	} catch (error) {
+        console.log(error.message)
+        result.textContent = "There was an error...."
+    }
 };
-fetchDadJoke()
+fetchDadJoke();
