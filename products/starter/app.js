@@ -17,8 +17,8 @@ const displayProducts = (list) => {
 	console.log(list);
 };
 const start = async () => {
-	const data = await fetchProducts()
-    displayProducts(data)
+	const data = await fetchProducts();
+	displayProducts(data);
 };
 start();
 
