@@ -23,7 +23,7 @@ const displayProducts = (list) => {
 			// id, name, price, img
 			return `<a
         class="single-product"
-        href="product.html">
+        href="product.html?id=${id}&name=john&age=25">
         <img
             src="${img}"
             class="single-product-img img"
