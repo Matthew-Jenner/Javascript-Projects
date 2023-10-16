@@ -1,20 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random Person</title>
-    <!-- font-awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-    <!-- css -->
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Random Person</title>
+		<!-- font-awesome -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+		<!-- css -->
+		<link
+			rel="stylesheet"
+			href="./styles.css" />
+	</head>
 
-  <body>
-    <h1>random person</h1>
-    <script type="module" src="./app.js"></script>
-  </body>
+	<body>
+		<div class="block bcg-black"></div>
+		<div class="block">
+			<div class="container">
+				<img
+					src="https://randomuser.me/api/portraits/men/75.jpg"
+					alt="random user"
+					class="user-img" />
+				<p class="user-title">My name is</p>
+				<p class="user-value">John Smith</p>
+				<div class="values-list"></div>
+				<!-- single icon -->
+				<button
+					class="icon active"
+					data-label="name"></button>
+				<span class="far fa-user"></span>
+				<!-- end of single icon -->
+				<!-- single icon -->
+				<button
+					class="icon"
+					data-label="email"></button>
+				<span class="far fa-envelope-open"></span>
+				<!-- end of single icon -->
+				<!-- single icon -->
+				<button
+					class="icon"
+					data-label="age"></button>
+				<span class="far fa-calendar-times"></span>
+				<!-- end of single icon -->
+				<!-- single icon -->
+				<button
+					class="icon"
+					data-label="street"></button>
+				<span class="far fa-map"></span>
+				<!-- end of single icon -->
+				<!-- single icon -->
+				<button
+					class="icon"
+					data-label="phone"></button>
+				<span class="fas fa-phone"></span>
+				<!-- end of single icon -->
+				<!-- single icon -->
+				<button
+					class="icon"
+					data-label="password"></button>
+				<span class="fas fa-user-lock"></span>
+				<!-- end of single icon -->
+				<button
+					class="btn"
+					type="button">
+					random user
+				</button>
+			</div>
+		</div>
+		<script
+			type="module"
+			src="./app.js"></script>
+	</body>
 </html>

@@ -28,10 +28,12 @@ const displayProduct = (product) => {
 	const { url: img } = image[0];
 	document.title = title.toUpperCase();
 	// colours
-	const colorsList = colors.map((color) => {
-		return `<span class="product-color"
+	const colorsList = colors
+		.map((color) => {
+			return `<span class="product-color"
         style="background: ${color}"></span>`;
-	}).join('')
+		})
+		.join("");
 	productDom.innerHTML = `<div class="product-wrapper">
     <img
         src="${img}"
