@@ -8,7 +8,14 @@ const prevBtn = document.querySelector(".prev-btn");
 container.innerHTML = people.map((person, slideIndex) => {
 	const { img, name, job, text } = person;
 	// more logic later
-	return `<article class="slide">
+    let position = 'next'
+    if(slideIndex === 0){
+        position = 'active'
+    }
+    if(slideIndex === people.length -1) {
+        position = 'last'
+    }
+	return `<article class="slide ${position}">
 <img
     src=" ${img}"
     alt="${name}"
