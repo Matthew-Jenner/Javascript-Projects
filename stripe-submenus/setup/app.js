@@ -49,9 +49,19 @@ linkBtns.forEach((btn) => {
 			submenu.classList.add("show");
 			submenu.style.left = `${center}px`;
 			submenu.style.top = `${bottom}px`;
+
+            // optional
+
+            let columns = 'col-2'
+            if(links.lenght ===3) {
+                columns = 'col-3'
+            }
+            if(links.lenght > 3) {
+                columns = 'col-4'
+            }
 			submenu.innerHTML = `<section>
             <h4>${page}</h4>
-            <div class="submenu-center col-2">
+            <div class="submenu-center ${columns}">
             ${links
 							.map((link) => {
 								return `<a href="${link.url}">
@@ -63,4 +73,11 @@ linkBtns.forEach((btn) => {
             </section>`;
 		}
 	});
+});
+hero.addEventListener("mouseenter", function (e) {
+	submenu.classList.remove("show");
+});
+hero.addEventListener("mouseenter", function (e) {
+	if (!e.target.classList.contains("link-btn"))
+		submenu.classList.remove("show");
 });
