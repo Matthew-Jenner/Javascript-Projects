@@ -20,12 +20,16 @@ const fetchPages = async (searchValue) => {
 	resultsDOM.innerHTML = '<div class="loading"></div>';
 	try {
 		const response = await fetch(`${url}${searchValue}`);
-		const data = await response.json();
+		console.log('Response Status:', response.status)
+        const data = await response.json();
+        console.log('API Response:', data)
 		const results = data.query.search;
 		if (results.length < 1) {
 			resultsDOM.innerHTML = '<div class="error"> no matching results</div>';
 			return;
 		}
+        resultsDOM.innerHTML = ''
+        renderResults(results)
 	} catch (error) {
 		resultsDOM.innerHTML = '<div class="error"> There was an error...</div>';
 	}
