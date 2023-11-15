@@ -3,7 +3,7 @@ import { addToCart } from './cart/setupCart.js';
 const display = (products, element) => {
     console.log(products, element);
     // display products
-    element.innerHTML = products.map((product) =>{
+    element.innerHTML = products.map((product) => {
         const {id, name, image, price} = product
         return `<article class="product">
         <div class="product-container">
@@ -22,7 +22,7 @@ const display = (products, element) => {
           <h4 class="product-price">${formatPrice(price)}</h4>
         </footer>
       </article>`
-    }).join('')
+}).join('')
     element.addEventListener('click', function(e) {
         const parent = e.target.parentElement
         if(parent.classList.contains('product-cart-btn')){
