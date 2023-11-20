@@ -10,49 +10,48 @@ import { findProduct } from "../store.js";
 import addToCartDOM from "./addToCartDOM.js";
 // set items
 
-const cartItemCountDOM = getElement('.cart-item-count')
-const cartItemsDOM = getElement('.cart-items')
-const cartTotalDOM = getElement('.cart-total')
+const cartItemCountDOM = getElement(".cart-item-count");
+const cartItemsDOM = getElement(".cart-items");
+const cartTotalDOM = getElement(".cart-total");
 
-let cart = getStorageItem('cart')
+let cart = getStorageItem("cart");
 
 export const addToCart = (id) => {
-  let item = cart.find((cartItem) => cartItem.id === id)
-  if(!item) {
-let product = findProduct(id)
-// add item to the cart
-product = {...product, amount:1}
-cart = [...cart, product]
-// add item to the DOM
-addToCartDOM(product)
-  }
-  else {
-    // update values
-  }
-  // add one to the item count
-  displayCartItemCount()
-  // diaply cart totals
-  displayCartTotal()
-  // set cart in local storage
-  setStorageItem('cart', cart)
+	let item = cart.find((cartItem) => cartItem.id === id);
+	if (!item) {
+		let product = findProduct(id);
+		// add item to the cart
+		product = { ...product, amount: 1 };
+		cart = [...cart, product];
+		// add item to the DOM
+		addToCartDOM(product);
+	} else {
+		// update values
+	}
+	// add one to the item count
+	displayCartItemCount();
+	// diaply cart totals
+	displayCartTotal();
+	// set cart in local storage
+	setStorageItem("cart", cart);
 
-  // more stuff
+	// more stuff
 	openCart();
 	console.log(id);
 };
 function displayCartItemCount() {
-  const amount = cart.reduce((total, cartItem) => {
-    return total += cartItem.amount
-  }, 0)
-  cartItemCountDOM.textContent = amount
+	const amount = cart.reduce((total, cartItem) => {
+		return (total += cartItem.amount);
+	}, 0);
+	cartItemCountDOM.textContent = amount;
 }
-function displayCartTotal(){
-  let total = cart.reduce((total, cartItem) => {
-    return total += cartItem.price * cartItem.amount
-  },0)
-  cartTotalDOM.textContent = `Total : ${formatPrice(total)}`
+function displayCartTotal() {
+	let total = cart.reduce((total, cartItem) => {
+		return (total += cartItem.price * cartItem.amount);
+	}, 0);
+	cartTotalDOM.textContent = `Total : ${formatPrice(total)}`;
 }
-const init = () =>{
-console.log(cart)
-}
-init()
+const init = () => {
+	console.log(cart);
+};
+init();
