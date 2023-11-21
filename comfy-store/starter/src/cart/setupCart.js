@@ -93,7 +93,7 @@ cartItemsDOM.addEventListener('click', function(e) {
   const parentID = e.target.parentElement.dataset.id
 // remove
 if(element.classList.contains('cart-item-remove-btn')) {
-  removeItem(id)
+  removeItem(parentID)
   parent.parentElement.remove()
 }
 // increase
