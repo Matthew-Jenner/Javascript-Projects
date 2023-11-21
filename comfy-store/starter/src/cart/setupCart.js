@@ -27,6 +27,7 @@ export const addToCart = (id) => {
 		addToCartDOM(product);
 	} else {
 		// update values
+    const amount = increaseAmount(id)
 	}
 	// add one to the item count
 	displayCartItemCount();
@@ -51,7 +52,30 @@ function displayCartTotal() {
 	}, 0);
 	cartTotalDOM.textContent = `Total : ${formatPrice(total)}`;
 }
+function displayCartItemsDOM(){
+  cart.forEach((cartItem) =>{
+    addToCartDOM(cartItem)
+  })
+}
+function increaseAmount(id) {
+  cart = cart.map((cartItem) => {
+    if(cartItem.id === id) {
+cartItem = {...cartItem, amount:cartItem.amount + 1}
+    }
+    return cartItem
+  })
+}
+function setupCartFunctionality(){
+
+}
 const init = () => {
-	console.log(cart);
+// display amount of cart items
+displayCartItemCount()
+// display total
+displayCartTotal()
+// add all cart items to the DOM
+displayCartItemsDOM()
+// setup cart functionality
+setupCartFunctionality()
 };
 init();
