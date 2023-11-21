@@ -27,10 +27,10 @@ export const addToCart = (id) => {
 		addToCartDOM(product);
 	} else {
 		// update values
-    const amount = increaseAmount(id)
-    const items = [...cartItemsDOM.querySelectorAll('.cart-item-amount')]
-    const newAmount = items.find((value) => value.dataset.id === id)
-    newAmount.textContent = amount
+		const amount = increaseAmount(id);
+		const items = [...cartItemsDOM.querySelectorAll(".cart-item-amount")];
+		const newAmount = items.find((value) => value.dataset.id === id);
+		newAmount.textContent = amount;
 	}
 	// add one to the item count
 	displayCartItemCount();
@@ -55,76 +55,75 @@ function displayCartTotal() {
 	}, 0);
 	cartTotalDOM.textContent = `Total : ${formatPrice(total)}`;
 }
-function displayCartItemsDOM(){
-  cart.forEach((cartItem) =>{
-    addToCartDOM(cartItem)
-  })
+function displayCartItemsDOM() {
+	cart.forEach((cartItem) => {
+		addToCartDOM(cartItem);
+	});
 }
 function removeItem(id) {
-  cart = cart.filter((cartItem) => cartItem.id !== id)
+	cart = cart.filter((cartItem) => cartItem.id !== id);
 }
 function increaseAmount(id) {
-  let newAmount
-  cart = cart.map((cartItem) => {
-    if(cartItem.id === id) {
-      newAmount = cartItem.amount + 1
-cartItem = {...cartItem, amount: newAmount}
-    }
-    return cartItem
-  })
-  return newAmount
+	let newAmount;
+	cart = cart.map((cartItem) => {
+		if (cartItem.id === id) {
+			newAmount = cartItem.amount + 1;
+			cartItem = { ...cartItem, amount: newAmount };
+		}
+		return cartItem;
+	});
+	return newAmount;
 }
 function decreaseAmount(id) {
-  let newAmount
-  cart = cart.map((cartItem) => {
-    if(cartItem.id === id) {
-      newAmount = cartItem.amount - 1
-cartItem = {...cartItem, amount: newAmount}
-    }
-    return cartItem
-  })
-  return newAmount
+	let newAmount;
+	cart = cart.map((cartItem) => {
+		if (cartItem.id === id) {
+			newAmount = cartItem.amount - 1;
+			cartItem = { ...cartItem, amount: newAmount };
+		}
+		return cartItem;
+	});
+	return newAmount;
 }
-function setupCartFunctionality(){
-cartItemsDOM.addEventListener('click', function(e) {
-  const element = e.target
-  const parent = e.target.parentElement
-  const id = e.target.dataset.id
-  const parentID = e.target.parentElement.dataset.id
-// remove
-if(element.classList.contains('cart-item-remove-btn')) {
-  removeItem(parentID)
-  parent.parentElement.remove()
-}
-// increase
-if(parent.classList.contains('cart-item-increase-btn')) {
-  const newAmount = increaseAmount(parentID)
-  parent.nextElementSibling.textContent = newAmount
-}
-// decrease
-if(parent.classList.contains('cart-item-decrease-btn')) {
-  const newAmount = decreaseAmount(parentID)
-  if(newAmount === 0) {
-    removeItem(id)
-    parent.parentElement.parentElement.remove()
-  }
-  else{
-    parent.previousElementSibling.textContent = newAmount
-  }
-}
-  displayCartItemCount()
-  displayCartTotal()
-  setStorageItem('cart', cart)
-})
+function setupCartFunctionality() {
+	cartItemsDOM.addEventListener("click", function (e) {
+		const element = e.target;
+		const parent = e.target.parentElement;
+		const id = e.target.dataset.id;
+		const parentID = e.target.parentElement.dataset.id;
+		// remove
+		if (element.classList.contains("cart-item-remove-btn")) {
+			removeItem(parentID);
+			parent.parentElement.remove();
+		}
+		// increase
+		if (parent.classList.contains("cart-item-increase-btn")) {
+			const newAmount = increaseAmount(parentID);
+			parent.nextElementSibling.textContent = newAmount;
+		}
+		// decrease
+		if (parent.classList.contains("cart-item-decrease-btn")) {
+			const newAmount = decreaseAmount(parentID);
+			if (newAmount === 0) {
+				removeItem(id);
+				parent.parentElement.parentElement.remove();
+			} else {
+				parent.previousElementSibling.textContent = newAmount;
+			}
+		}
+		displayCartItemCount();
+		displayCartTotal();
+		setStorageItem("cart", cart);
+	});
 }
 const init = () => {
-// display amount of cart items
-displayCartItemCount()
-// display total
-displayCartTotal()
-// add all cart items to the DOM
-displayCartItemsDOM()
-// setup cart functionality
-setupCartFunctionality()
+	// display amount of cart items
+	displayCartItemCount();
+	// display total
+	displayCartTotal();
+	// add all cart items to the DOM
+	displayCartItemsDOM();
+	// setup cart functionality
+	setupCartFunctionality();
 };
 init();
